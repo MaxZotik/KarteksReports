@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Connections>
+  <ConnectionConfig>
+    <Server>.\DREAM</Server>
+    <NameDb>Karteks_SCADA</NameDb>
+    <User>sa</User>
+    <Password>Basepwd#0000</Password>
+  </ConnectionConfig>
+</Connections>

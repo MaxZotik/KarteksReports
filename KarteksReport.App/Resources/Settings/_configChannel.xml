@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ConfigChannel>
+  <Channel>
+    <MoveParameter>2</MoveParameter>
+	<MoveFrequency>8</MoveFrequency>
+    <SpeedParameter>3</SpeedParameter>
+	<SpeedFrequency>3</SpeedFrequency>
+    <AccelerateParameter>4</AccelerateParameter>
+	<AccelerateFrequency>9</AccelerateFrequency>
+  </Channel>
+</ConfigChannel>

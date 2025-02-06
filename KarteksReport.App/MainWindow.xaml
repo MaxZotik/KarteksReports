@@ -1,0 +1,22 @@
+﻿<Window x:Class="KarteksReport.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KarteksReport.App" 
+        mc:Ignorable="d"
+        Title="Картекс отчет" Height="150" Width="700" 
+        WindowStartupLocation="CenterScreen"
+        Topmost="True"
+        ResizeMode="CanMinimize"
+        WindowStyle="ToolWindow">
+    <Grid>
+        <StackPanel>
+            <Grid>
+                <ProgressBar x:Name="pBar" Maximum="10" Value="0" Height="25" Margin="10 25 10 0"/>
+                <TextBlock x:Name="txtBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Margin="10 25 10 0" FontSize="18"/>
+            </Grid>
+            <Button x:Name="btnClose" Width="100" Height="30" Content="Закрыть" Margin="0 15 0 0" FontSize="18" Click="btn_Close" IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</Window>
