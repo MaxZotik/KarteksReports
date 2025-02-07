@@ -31,8 +31,17 @@ namespace ReportsLibraryOpenXmlSdk.Word
                 {
                     if (book.Name == str)
                     {
+                        RunProperties runProperties = new RunProperties();
+
+                        RunFonts runFonts = new RunFonts() { Ascii = "Times New Roman" };
+                        FontSize fontSize = new FontSize() { Val = "24" };
+
+                        runProperties.Append(runFonts);
+                        runProperties.Append(fontSize);
+
+
                         var text = new DFW.Text(GetTextBookmark(str));
-                        var runElement = new DFW.Run(text);
+                        var runElement = new DFW.Run(runProperties, text);
                         book.InsertAfterSelf(runElement);
                     }
                 }
