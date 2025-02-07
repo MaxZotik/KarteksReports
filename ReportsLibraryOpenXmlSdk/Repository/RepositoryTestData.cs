@@ -42,19 +42,29 @@ namespace ReportsLibraryOpenXmlSdk.Repository
                 if (tableDatas.Rows.Count != 0)
                 {
                     int equipmentTypeCode = int.Parse(tableDatas.Rows[0].ItemArray[1].ToString());
-                    string equipmentNumber = tableDatas.Rows[0].ItemArray[2].ToString();
-                    string fio = tableDatas.Rows[0].ItemArray[3].ToString();
+                    string? equipmentNumber = tableDatas.Rows[0].ItemArray[2].ToString();
+                    string? fio = tableDatas.Rows[0].ItemArray[3].ToString();
 
-                    DateTime.TryParse(tableDatas.Rows[0].ItemArray[4].ToString(), out DateTime equipmentCreationDatetime);
-                    DateTime.TryParse(tableDatas.Rows[0].ItemArray[5].ToString(), out DateTime modeOneStartDatetime);
-                    DateTime.TryParse(tableDatas.Rows[0].ItemArray[6].ToString(), out DateTime modeOneEndDatetime);
-                    DateTime.TryParse(tableDatas.Rows[0].ItemArray[9].ToString(), out DateTime modeTwoStartDatetime);
-                    DateTime.TryParse(tableDatas.Rows[0].ItemArray[10].ToString(), out DateTime modeTwoEndDatetime);
+                    _ = DateTime.TryParse(tableDatas.Rows[0].ItemArray[4].ToString(), out DateTime equipmentCreationDatetime);
+                    _ = DateTime.TryParse(tableDatas.Rows[0].ItemArray[5].ToString(), out DateTime modeOneStartDatetime);
+                    _ = DateTime.TryParse(tableDatas.Rows[0].ItemArray[6].ToString(), out DateTime modeOneEndDatetime);
+                    _ = DateTime.TryParse(tableDatas.Rows[0].ItemArray[9].ToString(), out DateTime modeTwoStartDatetime);
+                    _ = DateTime.TryParse(tableDatas.Rows[0].ItemArray[10].ToString(), out DateTime modeTwoEndDatetime);
 
-                    float averageTestRotationSpeed = float.Parse(tableDatas.Rows[0].ItemArray[13].ToString());
+                    float averageTestRotationSpeed;
+
+                    if (tableDatas.Rows[0].ItemArray[13].ToString() == "")
+                    {
+                        averageTestRotationSpeed = 0.0f;
+                    }
+                    else
+                    {
+                        averageTestRotationSpeed = float.Parse(tableDatas.Rows[0].ItemArray[13].ToString());
+                    }
+
                     float averageLoadRotationSpeed;
 
-                    if (tableDatas.Rows[0].ItemArray.Length == 15)
+                    if (tableDatas.Rows[0].ItemArray.Length == 15 && tableDatas.Rows[0].ItemArray[14].ToString() != "")
                     {
                         averageLoadRotationSpeed = float.Parse(tableDatas.Rows[0].ItemArray[14].ToString());
                     }
@@ -78,7 +88,7 @@ namespace ReportsLibraryOpenXmlSdk.Repository
             }
             catch (Exception ex)
             {
-                _= _logger.LogAsync(ex.Message);
+                _= _logger.LogAsync($@"RepositoryTestData : {ex.Message}");
 
                 StatusReport.SetStatusExaminedError();
                 StatusReport.SetStatusExaminedError();

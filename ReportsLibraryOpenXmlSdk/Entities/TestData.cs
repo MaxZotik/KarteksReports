@@ -15,8 +15,8 @@ namespace ReportsLibraryOpenXmlSdk.Entities
     /// <param name="modeTwoEndDatetime">Дата и время завершения режима 2 (против часовой)</param>
     /// <param name="averageTestRotationSpeed">Средняя частота вращения во время испытаний</param>
     /// <param name="averageLoadRotationSpeed">Средняя частота вращения во время испытаний (нагрузка)</param>
-    public class TestData(int equipmentTypeCode, string equipmentNumber, string fio, DateTime equipmentCreationDatetime, DateTime modeOneStartDatetime,
-            DateTime modeOneEndDatetime, DateTime modeTwoStartDatetime, DateTime modeTwoEndDatetime, float averageTestRotationSpeed, float averageLoadRotationSpeed)
+    public class TestData(int equipmentTypeCode, string equipmentNumber, string fio, DateTime equipmentCreationDatetime, DateTime? modeOneStartDatetime,
+            DateTime? modeOneEndDatetime, DateTime? modeTwoStartDatetime, DateTime? modeTwoEndDatetime, float? averageTestRotationSpeed, float? averageLoadRotationSpeed)
     {
         /// <summary>
         /// Код типа редуктора
@@ -41,31 +41,31 @@ namespace ReportsLibraryOpenXmlSdk.Entities
         /// <summary>
         /// Дата и время начала режима 1 (по часовой)
         /// </summary>
-        public DateTime ModeOneStartDatetime { get; set; } = modeOneStartDatetime;
+        public DateTime? ModeOneStartDatetime { get; set; } = modeOneStartDatetime;
 
         /// <summary>
         /// Дата и время завершения режима 1 (по часовой)
         /// </summary>
-        public DateTime ModeOneEndDatetime { get; set; } = modeOneEndDatetime;
+        public DateTime? ModeOneEndDatetime { get; set; } = modeOneEndDatetime;
 
         /// <summary>
         /// Дата и время начала режима 2 (против часовой)
         /// </summary>
-        public DateTime ModeTwoStartDatetime { get; set; } = modeTwoStartDatetime;
+        public DateTime? ModeTwoStartDatetime { get; set; } = modeTwoStartDatetime;
 
         /// <summary>
         /// Дата и время завершения режима 2 (против часовой)
         /// </summary>
-        public DateTime ModeTwoEndDatetime { get; set; } = modeTwoEndDatetime;
+        public DateTime? ModeTwoEndDatetime { get; set; } = modeTwoEndDatetime;
 
         /// <summary>
         /// Средняя частота вращения во время испытаний 
         /// </summary>
-        public float AverageTestRotationSpeed { get; set; } = averageTestRotationSpeed;
+        public float? AverageTestRotationSpeed { get; set; } = averageTestRotationSpeed;
 
         /// <summary>
         /// Средняя частота вращения во время испытаний (нагрузка)
         /// </summary>
-        public float AverageLoadRotationSpeed { get; set; } = averageLoadRotationSpeed;
+        public float? AverageLoadRotationSpeed { get; set; } = averageLoadRotationSpeed;
     }
 }

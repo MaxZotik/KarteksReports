@@ -1,4 +1,6 @@
-﻿using ReportsLibraryOpenXmlSdk.Services;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using ReportsLibraryOpenXmlSdk.Entities;
+using ReportsLibraryOpenXmlSdk.Services;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -19,8 +21,12 @@ namespace KarteksReport.App
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly StartApp _startApp;
+
         public MainWindow()
         {
+            _startApp = new StartApp();
+
             InitializeComponent();
 
             _= Start();
@@ -28,7 +34,14 @@ namespace KarteksReport.App
 
         private async Task Start()
         {
-            await StartApp.Start(pBar, btnClose, txtBlock);
+            txtBlock.Text = StatusReport.Status;
+
+            await _startApp.StartExamined(pBar);
+
+            await _startApp.StartWorkload(pBar);
+
+            txtBlock.Text = StatusReport.Status;
+            btnClose.IsEnabled = true;
         }
 
         private void btn_Close(object sender, RoutedEventArgs e)

@@ -12,7 +12,7 @@ namespace ReportsLibraryOpenXmlSdk.Word
     /// <param name="rotation">Частота вращения во время испытаний</param>
     /// /// <param name="rotationWorkload">Частота вращения во время испытаний (нагрузка)</param>
     /// <param name="dateTime">Дата и время</param>
-    public class Template(IWordReportFileDocx wordReportFileDocx, Gearboxes gearboxes, string fio, string rotation, string rotationWorkload, DateTime dateTime)
+    public class Template(IWordReportFileDocx wordReportFileDocx, Gearboxes gearboxes, string fio, string? rotation, string? rotationWorkload, DateTime dateTime)
     {
 
         /// <summary>
@@ -53,12 +53,12 @@ namespace ReportsLibraryOpenXmlSdk.Word
         /// <summary>
         /// Частота вращения во время испытаний
         /// </summary>
-        public string FrequencyOfRotationDuringTesting {  get; private set; } = rotation;
+        public string? FrequencyOfRotationDuringTesting {  get; private set; } = rotation;
 
         /// <summary>
         /// Частота вращения во время испытаний (нагрузка)
         /// </summary>
-        public string FrequencyOfRotationDuringWorkload { get; private set; } = rotationWorkload;
+        public string? FrequencyOfRotationDuringWorkload { get; private set; } = rotationWorkload;
 
         /// <summary>
         /// Схема редуктора

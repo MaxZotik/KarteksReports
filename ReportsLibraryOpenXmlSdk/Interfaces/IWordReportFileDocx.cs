@@ -17,5 +17,11 @@ namespace ReportsLibraryOpenXmlSdk.Interfaces
         /// Полное название отчета с расширением ".docx"
         /// </summary>
         string NameReport { get; set; }
+
+        /// <summary>
+        /// Метод создает файл отчета из шаблона
+        /// </summary>
+        /// <returns></returns>
+        bool CreateWordReportDocx();
     }
 }

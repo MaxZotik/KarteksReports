@@ -69,29 +69,41 @@ namespace ReportsLibraryOpenXmlSdk.Repository
         }
 
 
-        private float GetDataArchive(int gearboxID, int mvk, int channel, int parameter, int frequency, DateTime dateTimeStart, DateTime dateTimeEnd)
+        private float GetDataArchive(int gearboxID, int mvk, int channel, int parameter, int frequency, DateTime? dateTimeStart, DateTime? dateTimeEnd)
         {
-            string query = $@"SELECT ISNULL ((SELECT MAX([MVK Value Max]) FROM {Table.Archive.ToString()} WHERE [Equipment] = {gearboxID} AND [MVK Number] = {mvk} AND [Chanel] = {channel} AND [ID Parameters] = {parameter} AND [ID Frequency] = {frequency} AND [Time] BETWEEN CONVERT(datetime, '{dateTimeStart.ToString("yyyy-MM-dd HH:mm:ss")}', 20) AND CONVERT(datetime, '{dateTimeEnd.ToString("yyyy-MM-dd HH:mm:ss")}', 20)), 0.0)";
+            DateTime dateTime = new DateTime();
 
-            try
+            if (dateTimeStart == dateTime || dateTimeEnd == dateTime)
             {
-                using SqlConnection connection = new(_connectionString.ConnectionString);
-
-                connection.Open();
-
-                SqlCommand command = new(query, connection);
-
-                double data = Convert.ToDouble(command.ExecuteScalar());
-
-                Math.Round(data, 3);
-
-                return float.Parse(data.ToString());
+                return 0;
             }
-            catch (Exception ex)
+            else
             {
-                _= _logger.LogAsync(ex.Message);
-                StatusReport.SetStatusWorkloadError();
-            }
+                try
+                {
+                    DateTime dtStart = (DateTime)dateTimeStart;
+                    DateTime dtEnd = (DateTime)dateTimeEnd;
+
+                    string query = $@"SELECT ISNULL ((SELECT MAX([MVK Value Max]) FROM {Table.Archive.ToString()} WHERE [Equipment] = {gearboxID} AND [MVK Number] = {mvk} AND [Chanel] = {channel} AND [ID Parameters] = {parameter} AND [ID Frequency] = {frequency} AND [Time] BETWEEN CONVERT(datetime, '{dtStart.ToString("yyyy-MM-dd HH:mm:ss")}', 20) AND CONVERT(datetime, '{dtEnd.ToString("yyyy-MM-dd HH:mm:ss")}', 20)), 0.0)";
+
+                    using SqlConnection connection = new(_connectionString.ConnectionString);
+
+                    connection.Open();
+
+                    SqlCommand command = new(query, connection);
+
+                    double data = Convert.ToDouble(command.ExecuteScalar());
+
+                    Math.Round(data, 3);
+
+                    return float.Parse(data.ToString());
+                }
+                catch (Exception ex)
+                {
+                    _ = _logger.LogAsync($@"RepositoryArchivePointWorkload : {ex.Message}");
+                    StatusReport.SetStatusWorkloadError();
+                }
+            }      
 
             return 0;
         }

@@ -9,11 +9,8 @@ namespace ReportsLibraryOpenXmlSdk.Word
     public class WordReportDocx : IWordReportFileDocx
     {
         private static readonly string _nameDirectory = "Reports";
-
         private static readonly string _path = AppDomain.CurrentDomain.BaseDirectory;
-
         private readonly string _pathTemplate;
-
         private readonly Logger _logger;
 
         /// <summary>
@@ -43,7 +40,6 @@ namespace ReportsLibraryOpenXmlSdk.Word
             _pathTemplate = @$"{_path}Resources\Templates\{template}";
             NameReport = GetNameReport(equipName, dateTime);
             PathReport = $@"{_path}Reports\{NameReport}";
-            CreateWordReportDocx();
         }
 
         private static string GetNameReport(string equipName, DateTime dateTime)
@@ -51,7 +47,7 @@ namespace ReportsLibraryOpenXmlSdk.Word
             return @$"{dateTime.ToString("yyyyMMdd_HHmmss")}_{StringWork.ReplaceInvalidChar(equipName)}.docx";
         }
 
-        private void CreateWordReportDocx()
+        public bool CreateWordReportDocx()
         {
             try
             {
@@ -66,20 +62,22 @@ namespace ReportsLibraryOpenXmlSdk.Word
                     var mainPart = newDocWord.MainDocumentPart;
 
                     newDocWord.Save();
+
+                    return true;
                 }
                 else
                 {
                     _= _logger.LogAsync(@$"Файл шаблона не найден! {_pathTemplate}");
-                    StatusReport.SetStatusExaminedError();
-                    StatusReport.SetStatusWorkloadError();
+
+                    return false;
                 }
             }
             catch(Exception ex)
             {
-                _= _logger.LogAsync(ex.Message);
-                StatusReport.SetStatusExaminedError();
-                StatusReport.SetStatusWorkloadError();
+                _= _logger.LogAsync($@"WordReportDocx : {ex.Message}");
             }
+
+            return false;
            
         }
     }
