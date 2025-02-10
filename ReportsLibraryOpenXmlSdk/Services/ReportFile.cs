@@ -8,9 +8,9 @@ namespace ReportsLibraryOpenXmlSdk.Services
 {
     public class ReportFile
     {
-        private static readonly string _nameDirectory = "Reports";
+        private static readonly string _nameDirectory = "RTM_1";
 
-        private static readonly string _path = AppDomain.CurrentDomain.BaseDirectory;
+        private static readonly string _path = $@"C:\";
 
         private static readonly string _name = "reports.txt";
 
