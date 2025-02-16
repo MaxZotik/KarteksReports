@@ -29,6 +29,7 @@ namespace KarteksReport.App
         public async Task StartExamined(ProgressBar progressBar)
         {
             progressBar.Value += 2;
+            await Task.Delay(500);
 
             try
             {
@@ -37,6 +38,7 @@ namespace KarteksReport.App
                 if (!reportDocx.CreateWordReportDocx())
                 {
                     progressBar.Value += 3;
+                    await Task.Delay(500);
                     StatusReport.SetStatusExaminedError();
                     return;
                 }
@@ -55,12 +57,14 @@ namespace KarteksReport.App
                 RepositoryArchivePointExamined repositoryArchivePointExamined = new(_connectDb, repositoryDiagramExamined, _repositoryTestData, _repositoryChannelConfig);
                 WordReportTableExamined wordReportTableExamined = new(template, repositoryArchivePointExamined);
 
+                await Task.Delay(500);
                 progressBar.Value += +3;
 
                 StatusReport.SetStatusExaminedReady();
             }
             catch (Exception ex)
             {
+                await Task.Delay(500);
                 progressBar.Value += 3;
                 _ = _logger.LogAsync(ex.Message);
                 StatusReport.SetStatusExaminedError();
@@ -71,6 +75,7 @@ namespace KarteksReport.App
         public async Task StartWorkload(ProgressBar progressBar)
         {
             progressBar.Value += 2;
+            await Task.Delay(500);
 
             try
             {
@@ -79,6 +84,7 @@ namespace KarteksReport.App
                 if (!reportDocxWork.CreateWordReportDocx())
                 {
                     progressBar.Value += 3;
+                    await Task.Delay(500);
                     StatusReport.SetStatusExaminedError();
                     return;
                 }
@@ -97,12 +103,14 @@ namespace KarteksReport.App
                 RepositoryArchivePointWorkload repositoryArchivePointWorkload = new(_connectDb, repositoryDiagramWorkload, _repositoryTestData, _repositoryChannelConfig);
                 WordReportTableWorkload wordReportTableWorkload = new WordReportTableWorkload(template, repositoryArchivePointWorkload);
 
+                await Task.Delay(500);
                 progressBar.Value += 3;
 
                 StatusReport.SetStatusWorkloadReady();
             }
             catch (Exception ex)
             {
+                await Task.Delay(500);
                 progressBar.Value += 3;
                 _ = _logger.LogAsync(ex.Message);
                 StatusReport.SetStatusWorkloadError();
