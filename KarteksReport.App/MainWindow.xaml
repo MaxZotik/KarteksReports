@@ -5,16 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KarteksReport.App" 
         mc:Ignorable="d"
-        Title="Картекс отчет" Height="150" Width="700" 
+        Title="КАРТЭКС ОТЧЕТ" Height="150" Width="700" 
         WindowStartupLocation="CenterScreen"
         Topmost="True"
         ResizeMode="CanMinimize"
-        WindowStyle="ToolWindow">
+        WindowStyle="None">
     <Grid>
         <StackPanel>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Height="24" Margin="10 5 0 0" FontSize="16" Grid.Column="1" Text="КАРТЭКС ОТЧЕТ"/>
+        </StackPanel>
+        <StackPanel>
             <Grid>
-                <ProgressBar x:Name="pBar" Maximum="10" Value="0" Height="25" Margin="10 25 10 0"/>
-                <TextBlock x:Name="txtBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Height="25" Margin="10 25 10 0" FontSize="18"/>
+                <ProgressBar x:Name="pBar" Maximum="10" Value="0" Height="50" Margin="10 40 10 0" Grid.ColumnSpan="3"/>
+                <TextBlock x:Name="txtBlock" HorizontalAlignment="Center" VerticalAlignment="Center" Height="24" Margin="10 40 0 0" FontSize="18" Text=""/>
             </Grid>
             <Button x:Name="btnClose" Width="100" Height="30" Content="Закрыть" Margin="0 15 0 0" FontSize="18" Click="btn_Close" IsEnabled="False"/>
         </StackPanel>

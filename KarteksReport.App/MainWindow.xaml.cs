@@ -40,6 +40,8 @@ namespace KarteksReport.App
 
             await _startApp.StartWorkload(pBar);
 
+            await Task.Delay(500);
+
             txtBlock.Text = StatusReport.Status;
             btnClose.IsEnabled = true;
         }

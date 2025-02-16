@@ -29,7 +29,6 @@ namespace KarteksReport.App
         public async Task StartExamined(ProgressBar progressBar)
         {
             progressBar.Value += 2;
-            await Task.Delay(500);
 
             try
             {
@@ -57,7 +56,6 @@ namespace KarteksReport.App
                 WordReportTableExamined wordReportTableExamined = new(template, repositoryArchivePointExamined);
 
                 progressBar.Value += +3;
-                await Task.Delay(500);
 
                 StatusReport.SetStatusExaminedReady();
             }
@@ -73,7 +71,6 @@ namespace KarteksReport.App
         public async Task StartWorkload(ProgressBar progressBar)
         {
             progressBar.Value += 2;
-            await Task.Delay(500);
 
             try
             {
@@ -101,7 +98,6 @@ namespace KarteksReport.App
                 WordReportTableWorkload wordReportTableWorkload = new WordReportTableWorkload(template, repositoryArchivePointWorkload);
 
                 progressBar.Value += 3;
-                await Task.Delay(500);
 
                 StatusReport.SetStatusWorkloadReady();
             }
