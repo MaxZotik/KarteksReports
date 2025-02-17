@@ -36,17 +36,26 @@ namespace KarteksReport.App
 
         public MainWindow()
         {
+            Loaded += DeleteCloseButton;
+
             _startApp = new StartApp();
 
-            InitializeComponent();
+            //Loaded += Start;
 
-            //Start();
+            InitializeComponent();
+            
+            Start();
         }
 
-        private async void Start(object sender, RoutedEventArgs e)
+        private void DeleteCloseButton(object sender, RoutedEventArgs e)
         {
             var hwnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
             SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_SYSMENU);
+        }
+
+        private async void Start()
+        {
+            //_startApp = new StartApp();
 
             txtBlock.Text = "Подождите. Идет формирование отчетов!";
 

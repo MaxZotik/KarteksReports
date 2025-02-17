@@ -9,8 +9,7 @@
         WindowStartupLocation="CenterScreen"
         Topmost="True"
         ResizeMode="CanMinimize"
-        WindowStyle="ToolWindow"
-        Loaded="Start">
+        WindowStyle="ToolWindow">
     <Grid>
         <StackPanel>
             <Grid>

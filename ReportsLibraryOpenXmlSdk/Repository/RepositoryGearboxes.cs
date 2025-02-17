@@ -63,7 +63,7 @@ namespace ReportsLibraryOpenXmlSdk.Repository
         {
             try
             {
-                if (tableDatas.Rows.Count != 0 && tableDatas is not null)
+                if (tableDatas is not null && tableDatas.Rows.Count != 0)
                 {
                     int count = tableDatas.Rows.Count;
 

@@ -17,6 +17,7 @@
   <ItemGroup>
     <Reference Include="ReportsLibraryOpenXmlSdk">
       <HintPath>..\ReportsLibraryOpenXmlSdk\bin\Debug\net8.0\ReportsLibraryOpenXmlSdk.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
 
