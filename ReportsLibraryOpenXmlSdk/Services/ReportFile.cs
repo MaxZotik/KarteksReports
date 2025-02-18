@@ -28,7 +28,7 @@ namespace ReportsLibraryOpenXmlSdk.Services
 
             string _message =@$"1{Environment.NewLine}{unix}";
 
-            using StreamWriter sw = new(_fullPath, false, System.Text.Encoding.UTF8);
+            using StreamWriter sw = new(_fullPath, false);
 
             await Task.Run(() => sw.WriteLineAsync(_message));
         }
