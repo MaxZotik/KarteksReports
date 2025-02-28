@@ -84,7 +84,7 @@ namespace ReportsLibraryOpenXmlSdk.Repository
                     DateTime dtStart = (DateTime)dateTimeStart;
                     DateTime dtEnd = (DateTime)dateTimeEnd;
 
-                    string query = $@"SELECT ISNULL ((SELECT MAX([MVK Value Max]) FROM {Table.Archive.ToString()} WHERE [Equipment] = {gearboxID} AND [MVK Number] = {mvk} AND [Chanel] = {channel} AND [ID Parameters] = {parameter} AND [ID Frequency] = {frequency} AND [Time] BETWEEN CONVERT(datetime, '{dtStart.ToString("yyyy-MM-dd HH:mm:ss")}', 20) AND CONVERT(datetime, '{dtEnd.ToString("yyyy-MM-dd HH:mm:ss")}', 20)), 0.0)";
+                    string query = $@"SELECT ISNULL ((SELECT MAX([MVK Value]) FROM {Table.Archive.ToString()} WHERE [Equipment] = {gearboxID} AND [MVK Number] = {mvk} AND [Chanel] = {channel} AND [ID Parameters] = {parameter} AND [ID Frequency] = {frequency} AND [Time] BETWEEN CONVERT(datetime, '{dtStart.ToString("yyyy-MM-dd HH:mm:ss")}', 20) AND CONVERT(datetime, '{dtEnd.ToString("yyyy-MM-dd HH:mm:ss")}', 20)), 0.0)";
 
                     using SqlConnection connection = new(_connectionString.ConnectionString);
 
